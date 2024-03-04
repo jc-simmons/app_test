@@ -10,10 +10,13 @@ import datetime
 
 url = 'https://ml-deploy-api.onrender.com/'
 
-# Create a dash application
-dash_app = dash.Dash(__name__)#,external_stylesheets=[dbc.themes.FLATLY])
 
-dash_app.layout = html.Div([
+# Create a dash application
+app = dash.Dash(__name__)#,external_stylesheets=[dbc.themes.FLATLY])
+server = app.server
+
+
+app.layout = html.Div([
 html.H1("Dashboard Title" ,style ={"text-align": "center","font-family":"Lato"}),
 html.Br(),
 html.Br(),
@@ -60,7 +63,7 @@ html.P(['------------------------'])
 
 ])
 
-@dash_app.callback([Output(component_id='result', component_property='children'),
+@app.callback([Output(component_id='result', component_property='children'),
                 Output(component_id='inp', component_property='children')],
                 Input(component_id='my_txt_input', component_property='value'),
                 prevent_initial_call=True)
@@ -76,4 +79,4 @@ def call_api(text):
 
 
 if __name__ == "__main__":
-    dash_app.run()
+    app.run_server()

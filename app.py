@@ -1,4 +1,4 @@
-import Flask
+from flask import Flask, request
 import dash
 from dash import html
 from dash import dcc

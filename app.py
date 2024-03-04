@@ -15,12 +15,7 @@ def init_dashboard(server):
         server=server,
         routes_pathname_prefix='/'
         )
-
-    msg = {'input': 'uunndu'}
-    response = requests.get(url,params=msg)
-    result = response.json()
-    result = result['chars']
-
+    
     dash_app.layout = html.Div([
     html.H1("Dashboard Title" ,style ={"text-align": "center","font-family":"Lato"}),
     html.Br(),

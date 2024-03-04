@@ -75,5 +75,5 @@ def call_api(text):
 
 
 
-if __name__ == '__main__':
-    app.run_server()
+if __name__ == "__main__":
+    app.run()

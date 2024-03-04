@@ -9,7 +9,7 @@ import requests
 import datetime
 
 
-url = 'https://app-test-vg50.onrender.com'
+url = 'https://app-test-vg50.onrender.com/api'
 
 def init_dashboard(server):
     """Create a Plotly Dash dashboard."""

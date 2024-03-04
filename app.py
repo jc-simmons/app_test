@@ -11,15 +11,13 @@ import datetime
 
 url = 'https://ml-deploy-api.onrender.com/'
 
+# Create a dash application
+app = dash.Dash(__name__)
 
-def init_dashboard(server):
-    """Create a Plotly Dash dashboard."""
-    dash_app = dash.Dash(
-        server=server,
-        routes_pathname_prefix='/'
-        )
+server = app.server
 
-    dash_app.layout = html.Div([
+
+app.layout = html.Div([
     html.H1("Dashboard Title" ,style ={"text-align": "center","font-family":"Lato"}),
     html.Br(),
     html.Br(),
@@ -67,32 +65,21 @@ def init_dashboard(server):
     ])
     
 
-    @dash_app.callback([Output(component_id='result', component_property='children'),
-                    Output(component_id='inp', component_property='children')],
-                    Input(component_id='my_txt_input', component_property='value'),
-                    prevent_initial_call=True)
-    def call_api(text):
+@app.callback([Output(component_id='result', component_property='children'),
+                Output(component_id='inp', component_property='children')],
+                Input(component_id='my_txt_input', component_property='value'),
+                prevent_initial_call=True)
 
-        msg = {'input': text}
-        response = requests.get(url,params=msg)
-        result = response.json()
-        result = result['chars']
+def call_api(text):
 
-        return [result, text]
+    msg = {'input': text}
+    response = requests.get(url,params=msg)
+    result = response.json()
+    result = result['chars']
 
-
-
-    return dash_app.server
+    return [result, text]
 
 
-def init_app():
-    app = Flask(__name__)
-
-    with app.app_context():
-        app = init_dashboard(app)
-        return app
-
-app = init_app()
 
 if __name__ == "__main__":
     app.run()

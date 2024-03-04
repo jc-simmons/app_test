@@ -11,7 +11,7 @@ import datetime
 url = 'https://ml-deploy-api.onrender.com/'
 
 # Create a dash application
-app = dash.Dash(__name__,external_stylesheets=[dbc.themes.FLATLY])
+app = dash.Dash(__name__)#,external_stylesheets=[dbc.themes.FLATLY])
 
 app.layout = html.Div([
 html.H1("Dashboard Title" ,style ={"text-align": "center","font-family":"Lato"}),
